@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <title>FIFA19</title>
+  <link rel="shortcut icon" type="image/png" href="https://cdn.freelogovectors.net/wp-content/uploads/2020/07/electronic-arts-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@200;300&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      font-family: 'Montserrat', sans-serif;
+      font-family: 'Nunito', sans-serif;
+    }
+    /* Modify the background color */
+    .navbar-custom{
+      background-color: rgb(64, 78, 237);
+    }
+
+    .btn-custom{
+      background-color: rgba(255, 71, 71, 25);
+    }
+    .btn-custom-2{
+      background-color: rgb(64, 78, 237);
+    }
+    #mylink{
+      min-height: 200px;
+      position: relative;
+      background-color: rgb(153, 170, 181);
+    }
+  </style>
+
+</head>
+<body style="background-color: rgb(246, 246, 246);">
+  <nav class="navbar navbar-custom" id="mylink2">
+    <div class="container">
+      <a class="navbar-brand" href="{{url_for('main')}}">
+        <img src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-19/sunset/common/fifa19-nav-white-logo.svg" alt="EAFifa">
+      </a>
+        <a class="nav-link" href="#mylink" style="color: white; font-size: 20px;"><b>Contact</b> &#x1F53B;</a>
+    </div> 
+  </nav><br>
+  <!-- logo  -->
+  <div align='center'>
+    <a href="{{url_for('main')}}"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Electronic_Arts_Logo_2020.png" alt="FIFA19 Index" style="width: 90px;;height: 90px;;position: relative; right: 10px;"></a>
+    <a href="{{url_for('main')}}"><img src="https://media.contentapi.ea.com/content/dam/eacom/common/ea-wordmark-network-nav-coral.svg" alt="FIFA19 Index" style="width: 450px;;height: 150px;; position: relative;left: 10px;"></a>
+  </div><br>
+  <!-- search player  -->
+  <div class="container" style=" max-width: 1000px;">
+    <form action="{{url_for('search')}}" method="POST">
+      <div class="form-floating col-9" style="position: relative;right: -25px;">
+        <input type="text" maxlength="30" name="keyword" class="form-control" placeholder="Player name" value="{{request.form['keyword']}}"/>
+        <label for="keyword">Player name</label>         
+      </div>
+      <!-- position button  -->
+      <div class="row my-3 ms-auto" style="position: relative;right: -95px;">
+        <div class="form-check col-1" style="width: 43px;">
+          <input type="checkbox" class="btn-check" id="st" name="check" value="'ST','LS','RS'" autocomplete="off">
+          <label label class="btn btn-outline-danger btn-sm" for="st">ST</label>
+        </div>
+        <div class="form-check col-1" style="width: 47px;">
+          <input type="checkbox" class="btn-check" id="lw" name="check" value="'LW'" autocomplete="off">
+          <label class="btn btn-outline-danger btn-sm" for="lw">LW</label>
+        </div>
+        <div class="form-check col-1" style="width: 50px;">
+          <input type="checkbox" class="btn-check" id="rw" name="check" value="'RW'" autocomplete="off">
+          <label class="btn btn-outline-danger btn-sm" for="rw">RW</label>
+        </div>
+        <div class="form-check col-1" style="width: 45px;">
+          <input type="checkbox" class="btn-check" id="cf" name="check" value="'CF','LF','RF'" autocomplete="off">
+          <label class="btn btn-outline-danger btn-sm" for="cf">CF</label>
+        </div>
+        <div class="form-check col-1" style="width: 60px;">
+          <input type="checkbox" class="btn-check" id="cam" name="check" value="'CAM','LAM','RAM'" autocomplete="off">
+          <label class="btn btn-outline-success btn-sm" for="cam">CAM</label>
+        </div>
+        <div class="form-check col-1" style="width: 47px;">
+          <input type="checkbox" class="btn-check" id="lm" name="check" value="'LM'" autocomplete="off">
+          <label class="btn btn-outline-success btn-sm" for="lm">LM</label>
+        </div>
+        <div class="form-check col-1" style="width: 50px;">
+          <input type="checkbox" class="btn-check" id="rm" name="check" value="'RM'" autocomplete="off">
+          <label class="btn btn-outline-success btn-sm" for="rm">RM</label>
+        </div>
+        <div class="form-check col-1" style="width: 50px;">
+          <input type="checkbox" class="btn-check" id="cm" name="check" value="'CM','LCM','RCM'" autocomplete="off">
+          <label class="btn btn-outline-success btn-sm" for="cm">CM</label>
+        </div>
+        <div class="form-check col-1" style="width: 60px;">
+          <input type="checkbox" class="btn-check" id="cdm" name="check" value="'CDM','LDM','RDM'" autocomplete="off">
+          <label class="btn btn-outline-success btn-sm" for="cdm">CDM</label>
+        </div>
+        <div class="form-check col-1" style="width: 52px;">
+          <input type="checkbox" class="btn-check" id="lwb" name="check" value="'LWB'" autocomplete="off">
+          <label class="btn btn-outline-primary btn-sm" for="lwb">LWB</label>
+        </div>
+        <div class="form-check col-1" style="width: 58px;">
+          <input type="checkbox" class="btn-check" id="rwb" name="check" value="'RWB'" autocomplete="off">
+          <label class="btn btn-outline-primary btn-sm" for="rwb">RWB</label>
+        </div>
+        <div class="form-check col-1" style="width: 43px;">
+          <input type="checkbox" class="btn-check" id="lb" name="check" value="'LB'" autocomplete="off">
+          <label class="btn btn-outline-primary btn-sm" for="lb">LB</label>
+        </div>
+        <div class="form-check col-1" style="width: 45px;">
+          <input type="checkbox" class="btn-check" id="rb" name="check" value="'RB'" autocomplete="off">
+          <label class="btn btn-outline-primary btn-sm" for="rb">RB</label>
+        </div>
+        <div class="form-check col-1" style="width: 45px;">
+          <input type="checkbox" class="btn-check" id="cb" name="check" value="'CB','LCB','RCB'" autocomplete="off">
+          <label class="btn btn-outline-primary btn-sm" for="cb">CB</label>
+        </div>
+        <div class="form-check col-1">
+          <input type="checkbox" class="btn-check" id="gk" name="check" value="'GK'" autocomplete="off">
+          <label class="btn btn-outline-warning btn-sm" for="gk">GK</label>
+        </div>
+
+      </div>
+      <!-- submit button  -->
+      <div style="position: relative;top: -119px; right: -767px;">
+        <button type="submit" class="btn btn-custom-2 btn-lg btn-primary">&#x1F50D Search</button>
+        <button type="reset" class="btn btn-custom btn-danger">&#x274C;</button>
+      </div>
+      <!-- select -->
+      <div class="input-group" style="position: relative;right: 10px; top: -50px;">
+        <!-- select pos -->
+        <div class="form-check col-auto" style="position: relative;right: -25px;">
+          <select class="form-select form-select-sm" id="selectpos" name="selectpos">
+            <option selected value="Overall" style="color: rgba(255, 71, 71, 25);">Overall</option>
+              <option value="ST">ST</option>
+              <option value="LW">LW</option>
+              <option value="RW">RW</option>
+              <option value="CF">CF</option>
+              <option value="CAM">CAM</option>
+              <option value="LM">LM</option>
+              <option value="RM">RM</option>
+              <option value="CM">CM</option>
+              <option value="CDM">CDM</option>
+              <option value="LWB">LWB</option>
+              <option value="RWB">RWB</option>
+              <option value="LB">LB</option>
+              <option value="RB">RB</option>
+              <option value="CB">CB</option>
+              <option value="GK">GK</option>
+          </select>
+        </div>
+        <!-- min max position  -->
+        <div class="col-auto" style="position: relative;right: -25px;">
+          <div class="input-group input-group-sm">
+            <input type="number" min="0" max="99" step="1" class="form-control form-control-sm" placeholder="min" name="posmin" value="{{request.form['posmin']}}">
+            <input type="number" min="0" max="99" step="1" class="form-control form-control-sm" placeholder="max" name="posmax" value="{{request.form['posmax']}}">
+          </div>
+        </div>
+        <!-- select Nationality -->
+        <div class="form-check col-3" style="position: relative;right: -5px;">
+          <select class="form-select form-select-sm" id="selectnation" name="selectnation">
+            <option selected value="" style="color: rgba(255, 71, 71, 25);">-- Nationality --</option>
+            <optgroup label="A">
+              <option value="Afghanistan">Afghanistan</option>
+              <option value="Albania">Albania</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Andorra">Andorra</option>
+              <option value="Angola">Angola</option>
+              <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Armenia">Armenia</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Azerbaijan">Azerbaijan</option>
+            </optgroup>
+            <optgroup label="B">
+              <option value="Barbados">Barbados</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Belize">Belize</option>
+              <option value="Benin">Benin</option>
+              <option value="Bermuda">Bermuda</option>
+              <option value="Bolivia">Bolivia</option>
+              <option value="Bosnia Herzegovina">Bosnia Herzegovina</option>
+              <option value="Botswana">Botswana</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Bulgaria">Bulgaria</option>
+              <option value="Burkina Faso">Burkina Faso</option>
+              <option value="Burundi">Burundi</option>
+            </optgroup>
+            <optgroup label="C">
+              <option value="Cameroon">Cameroon</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Central African Rep.">Central African Rep.</option>
+              <option value="Chad">Chad</option>
+              <option value="Chile">Chile</option>
+              <option value="China PR">China PR</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Comoros">Comoros</option>
+              <option value="Congo">Congo</option>
+              <option value="Costa Rica">Costa Rica</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Cuba">Cuba</option>
+              <option value="Curacao">Curacao</option>
+              <option value="Cyprus">Cyprus</option>
+              <option value="Czech Republic">Czech Republic</option>
+            </optgroup>
+            <optgroup label="D">
+              <option value="DR Congo">DR Congo</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Dominican Republic">Dominican Republic</option>
+            </optgroup>
+            <optgroup label="E">
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="El Salvador">El Salvador</option>
+              <option value="England">England</option>
+              <option value="Equatorial Guinea">Equatorial Guinea</option>
+              <option value="Eritrea">Eritrea</option>
+              <option value="Estonia">Estonia</option>
+              <option value="Ethiopia">Ethiopia</option>
+            </optgroup>
+            <optgroup label="F">
+              <option value="FYR Macedonia">FYR Macedonia</option>
+              <option value="Faroe Islands">Faroe Islands</option>
+              <option value="Fiji">Fiji</option>
+              <option value="Finland">Finland</option>
+              <option value="France">France</option>
+            </optgroup>
+            <optgroup label="G">
+              <option value="Gabon">Gabon</option>
+              <option value="Gambia">Gambia</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Greece">Greece</option>
+              <option value="Grenada">Grenada</option>
+              <option value="Guam">Guam</option>
+              <option value="Guatemala">Guatemala</option>
+              <option value="Guinea">Guinea</option>
+              <option value="Guinea Bissau">Guinea Bissau</option>
+              <option value="Guyana">Guyana</option>
+            </optgroup>
+            <optgroup label="H">
+              <option value="Haiti">Haiti</option>
+              <option value="Honduras">Honduras</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="Hungary">Hungary</option>
+            </optgroup>
+            <optgroup label="I">
+              <option value="Iceland">Iceland</option>
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Iran">Iran</option>
+              <option value="Iraq">Iraq</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+            </optgroup>
+            <optgroup label="J">
+              <option value="Jamaica">Jamaica</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+            </optgroup>
+            <optgroup label="K">
+              <option value="Kazakhstan">Kazakhstan</option>
+              <option value="Kenya">Kenya</option>
+              <option value="Korea DPR">Korea DPR</option>
+              <option value="Korea Republic">Korea Republic</option>
+              <option value="Kosovo">Kosovo</option>
+              <option value="Kuwait">Kuwait</option>
+            </optgroup>
+            <optgroup label="L">
+              <option value="Latvia">Latvia</option>
+              <option value="Lebanon">Lebanon</option>
+              <option value="Liberia">Liberia</option>
+              <option value="Libya">Libya</option>
+              <option value="Liechtenstein">Liechtenstein</option>
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+            </optgroup>
+            <optgroup label="M">
+              <option value="Madagascar">Madagascar</option>
+              <option value="Mali">Mali</option>
+              <option value="Malta">Malta</option>
+              <option value="Mauritania">Mauritania</option>
+              <option value="Mauritius">Mauritius</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Moldova">Moldova</option>
+              <option value="Montenegro">Montenegro</option>
+              <option value="Montserrat">Montserrat</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Mozambique">Mozambique</option>
+            </optgroup>
+            <optgroup label="N">
+              <option value="Namibia">Namibia</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="New Caledonia">New Caledonia</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Nicaragua">Nicaragua</option>
+              <option value="Niger">Niger</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="Northern Ireland">Northern Ireland</option>
+              <option value="Norway">Norway</option>
+            </optgroup>
+            <optgroup label="O">
+              <option value="Oman">Oman</option>
+            </optgroup>
+            <optgroup label="P">
+              <option value="Palestine">Palestine</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Peru">Peru</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Poland">Poland</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Puerto Rico">Puerto Rico</option>
+            </optgroup>
+            <optgroup label="Q">
+              <option value="Qatar">Qatar</option>
+            </optgroup>
+            <optgroup label="R">
+              <option value="Republic of Ireland">Republic of Ireland</option>
+              <option value="Romania">Romania</option>
+              <option value="Russia">Russia</option>
+              <option value="Rwanda">Rwanda</option>
+            </optgroup>
+            <optgroup label="S">
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="Serbia">Serbia</option>
+              <option value="Sierra Leone">Sierra Leone</option>
+              <option value="Slovakia">Slovakia</option>
+              <option value="Slovenia">Slovenia</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Sudan">South Sudan</option>
+              <option value="Spain">Spain</option>
+              <option value="St Kitts Nevis">St Kitts Nevis</option>
+              <option value="St Lucia">St Lucia</option>
+              <option value="Sudan">Sudan</option>
+              <option value="Suriname">Suriname</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Syria">Syria</option>
+              <option value="São Tomé & Príncipe">São Tomé & Príncipe</option>
+            </optgroup>
+            <optgroup label="T">
+              <option value="Tanzania">Tanzania</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Togo">Togo</option>
+              <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkey">Turkey</option>
+            </optgroup>
+            <optgroup label="U">
+              <option value="Uganda">Uganda</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="United States">United States</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+            </optgroup>
+            <optgroup label="V">
+              <option value="Venezuela">Venezuela</option>
+            </optgroup>
+            <optgroup label="W">
+              <option value="Wales">Wales</option>
+            </optgroup>
+            <optgroup label="Z">
+              <option value="Zambia">Zambia</option>
+              <option value="Zimbabwe">Zimbabwe</option>
+            </optgroup>
+          </select>
+        </div>
+        <!-- work rate  -->
+        <div class="form-check col-auto" style="position: relative;right: 15px;">
+          <div class="input-group input-group-sm">
+            <select class="form-select form-select-sm" id="work_atk" name="work_atk">
+              <option selected value="" style="color: rgba(255, 71, 71, 25);">-- Attacking Rate --</option>
+              <option value="High">Attacking Rate : High</option>
+              <option value="Medium">Attacking Rate : Medium</option>
+              <option value="Low">Attacking Rate : Low</option>
+            </select>
+            <select class="form-select form-select-sm" id="work_df" name="work_df">
+              <option selected value="" style="color: rgba(255, 71, 71, 25);">-- Defendsive Rate --</option>
+              <option value="High">Defendsive Rate : High</option>
+              <option value="Medium">Defendsive Rate : Medium</option>
+              <option value="Low">Defendsive Rate : Low</option>
+            </select>
+          </div>
+        </div>
+        <!-- select attributes  -->
+        <div class="form-check col-3 my-1">
+          <select class="form-select form-select-sm" id="selectatt" name="selectatt">
+            <option selected value="Overall" style="color: rgba(255, 71, 71, 25);">-- Attributes --</option>
+              <optgroup label="A">
+                <option value="Acceleration">Acceleration</option>
+                <option value="Aggression">Aggression</option>
+                <option value="Agility">Agility</option>
+              </optgroup>
+              <optgroup label="B">
+                <option value="Balance">Balance</option>
+                <option value="BallControl">Ball Control</option>
+              </optgroup>
+              <optgroup label="C">
+                <option value="Composure">Composure</option>
+                <option value="Crossing">Crossing</option>
+                <option value="Curve">Curve</option>
+              </optgroup>
+              <optgroup label="D">
+                <option value="Dribbling">Dribbling</option>
+              </optgroup>
+              <optgroup label="F">
+                <option value="FKAccuracy">Free Kick Accuracy</option>
+                <option value="Finishing">Finishing</option>
+              </optgroup>
+              <optgroup label="G">
+                <option value="GKDiving">Goalkeeper Diving</option>
+                <option value="GKHandling">Goalkeeper Handling</option>
+                <option value="GKKicking">Goalkeeper Kicking</option>
+                <option value="GKPositioning">Goalkeeper Positioning</option>
+                <option value="GKReflexes">Goalkeeper Reflexes</option>
+              </optgroup>
+              <optgroup label="H">
+                <option value="HeadingAccuracy">Heading Accuracy</option>
+              </optgroup>
+              <optgroup label="I">
+                <option value="Interceptions">Interceptions</option>
+              </optgroup>
+              <optgroup label="J">
+                <option value="Jumping">Jumping</option>
+              </optgroup>
+              <optgroup label="L">
+                <option value="LongPassing">Long Passing</option>
+                <option value="LongShots">LongShots</option>
+              </optgroup>
+              <optgroup label="M">
+                <option value="Marking">Marking</option>
+              </optgroup>
+              <optgroup label="P">
+                <option value="Penalties">Penalties</option>
+                <option value="Positioning">Positioning</option>
+              </optgroup>
+              <optgroup label="R">
+                <option value="Reactions">Reactions</option>
+              </optgroup>
+              <optgroup label="S">
+                <option value="ShortPassing">Short Passing</option>
+                <option value="ShotPower">Shot Power</option>
+                <option value="SlidingTackle">SlidingTackle</option>
+                <option value="SprintSpeed">Sprint Speed</option>
+                <option value="Stamina">Stamina</option>
+                <option value="StandingTackle">Standing Tackle</option>
+                <option value="Strength">Strength</option>
+              </optgroup>
+              <optgroup label="">
+                <option value="Vision">Vision</option>
+                <option value="Volleys">Volleys</option>
+              </optgroup>
+          </select>
+        </div>
+        <!-- min max attributes  -->
+        <div class="col-3 my-1">
+          <div class="input-group input-group-sm">
+            <input type="number" min="0" max="99" step="1" class="form-control form-control-sm" placeholder="min" name="attmin" value="{{request.form['attmin']}}">
+            <input type="number" min="0" max="99" step="1" class="form-control form-control-sm" placeholder="max" name="attmax" value="{{request.form['attmax']}}">
+          </div>
+        </div>
+        <!-- height  -->
+        <div class="col-3 my-1" style="position: relative;right: -5px;">
+          <div class="input-group input-group-sm">
+            <div class="input-group-text" style="background-color: rgb(35, 39, 42); color: rgb(255, 255, 255);">Height</div>
+            <input type="number" min="0" max="300" step="0.01" class="form-control form-control-sm" placeholder="min" name="heightmin" value="{{request.form['heightmin']}}">
+            <input type="number" min="0" max="300" step="0.01" class="form-control form-control-sm" placeholder="max" name="heightmax" value="{{request.form['heightmax']}}">
+          </div>
+        </div>
+        <!-- weight -->
+        <div class="col-3 my-1" style="position: relative;right: -10px;">
+          <div class="input-group input-group-sm">
+            <div class="input-group-text" style="background-color: rgb(35, 39, 42); color: rgb(255, 255, 255);">Weight</div>
+            <input type="number" min="0" max="150" step="0.01" class="form-control form-control-sm" placeholder="min" name="weightmin" value="{{request.form['weightmin']}}">
+            <input type="number" min="0" max="150" step="0.01" class="form-control form-control-sm" placeholder="max" name="weightmax" value="{{request.form['weightmax']}}">
+          </div>
+        </div>
+        <!-- prefer&weak foot  -->
+        <div class="form-check col-auto my-1" style="position: relative;right: -25px;">
+          <div class="input-group input-group-sm">
+            <select class="form-select form-select-sm" id="prefer_foot" name="prefer_foot">
+              <option selected value="" style="color: rgba(255, 71, 71, 25);">-- Preferred Foot --</option>
+                <option value="R">Prefer Foot : Right</option>
+                <option value="L">Prefer Foot : Left</option>
+            </select>
+            <select class="form-select form-select-sm" id="weak_foot" name="weak_foot">
+              <option selected value="" style="color: rgba(255, 71, 71, 25);">-- Weak Foot --</option>
+                <option value="5">Weak Foot : 5</option>
+                <option value="4">Weak Foot : 4</option>
+                <option value="3">Weak Foot : 3</option>
+                <option value="2">Weak Foot : 2</option>
+                <option value="1">Weak Foot : 1</option>
+            </select>
+          </div>
+        </div>
+        <!-- skill -->
+        <div class="form-check col-auto my-1" style="position: relative;right: -5px;">
+            <select class="form-select form-select-sm" id="skill_moves" name="skill_moves">
+              <option selected value="" style="color: rgba(255, 71, 71, 25);">-- Skill Moves --</option>
+                <option value="5">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</option>
+                <option value="4">&#x2B50;&#x2B50;&#x2B50;&#x2B50;</option>
+                <option value="3">&#x2B50;&#x2B50;&#x2B50;</option>
+                <option value="2">&#x2B50;&#x2B50;</option>
+                <option value="1">&#x2B50;</option>
+            </select>
+        </div>
+        <!-- inter_rep  -->
+        <div class="form-check col-auto my-1" style="position: relative;right: 15px;">
+          <select class="form-select form-select-sm" id="inter_rep" name="inter_rep">
+            <option selected value="" style="color: rgba(255, 71, 71, 25);">-- International Reputation --</option>
+            <option value="5">Legendary</option>
+            <option value="4">World Class</option>
+            <option value="3">Top Class</option>
+            <option value="2">Famous Player</option>
+            <option value="1">Regular Player</option>
+          </select>
+        </div>
+        <!-- age  -->
+        <div class="col-auto my-1" style="position: relative;right: 10px;">
+          <div class="input-group input-group-sm">
+            <div class="input-group-text" style="background-color: rgb(35, 39, 42); color: rgb(255, 255, 255);">Age</div>
+            <input type="number" min="16" max="45" step="1" class="form-control form-control-sm" placeholder="min" name="agemin" value="{{request.form['agemin']}}" >
+            <input type="number" min="16" max="45" step="1" class="form-control form-control-sm" placeholder="max" name="agemax" value="{{request.form['agemax']}}">
+          </div>
+        </div>
+
+      </div>
+      
+
+    </div>
+    </form>
+  </div>
+  <!-- block content  -->
+  <main>
+    {%block content%}
+    {%endblock%}
+  </main>
+    <!-- footer -->
+    <footer>
+      <div class="p-4" style="color: rgb(35, 39, 42); font-size: 20px;" id="mylink">
+        </div>
+          <div class="row">
+            <div class="col text-center" style="position: relative;bottom: -100px;">
+              <p>Copyright &copy; Nattapong Makanupuk 2021</p>
+            </div>
+          </div>
+      </footer>
+    
+</body>
+</html>
